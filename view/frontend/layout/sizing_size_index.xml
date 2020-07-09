@@ -6,8 +6,9 @@
                 <arguments>
                     <argument name="listSize" xsi:type="object">Harriswebworks\Sizing\ViewModel\Size\ListSize</argument>
                     <argument name="formatter" xsi:type="object">Harriswebworks\Sizing\ViewModel\Formatter</argument>
-                        <argument name="sizeUrl" xsi:type="object">Harriswebworks\Sizing\ViewModel\Size\Url</argument>
-                    </arguments>
+                    <argument name="sizeUrl" xsi:type="object">Harriswebworks\Sizing\ViewModel\Size\Url</argument>
+                    <argument name="systemConfig" xsi:type="object">Harriswebworks\Sizing\ViewModel\SystemConfig</argument>
+                </arguments>
             </block>
         </referenceContainer>
     </body>
