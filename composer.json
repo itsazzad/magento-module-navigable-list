@@ -1,7 +1,7 @@
 {
   "name": "harriswebworks/module-sizing",
   "description": "Harriswebworks_Sizing magento 2 extension",
-  "version": "0.0.1594307572",
+  "version": "0.0.1594293018",
   "require": {
     "magento/module-backend": "*",
     "magento/module-config": "*",

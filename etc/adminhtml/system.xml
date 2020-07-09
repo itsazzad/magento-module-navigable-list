@@ -7,6 +7,10 @@
             <resource>Harriswebworks_Sizing::sizing_config</resource>
             <group id="size" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Size</label>
+                <field id="short_description" type="editor" translate="label" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Short description</label>
+                    <frontend_model>Harriswebworks\Sizing\Block\Adminhtml\System\Config\Form\Field\Editor</frontend_model>
+                </field>
                 <field id="breadcrumbs" type="select" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable Breadcrumbs</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
