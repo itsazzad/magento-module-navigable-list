@@ -1,0 +1,47 @@
+<?php
+
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var $listSize \Harriswebworks\Sizing\ViewModel\Size\ListSize */
+$listSize = $block->getData('listSize');
+/** @var $formatter \Harriswebworks\Sizing\ViewModel\Formatter */
+$formatter = $block->getData('formatter');
+/** @var $sizeUrl \Harriswebworks\Sizing\ViewModel\Size\Url */
+$sizeUrl = $block->getData('sizeUrl');
+?>
+<?php if ($listSize): ?>
+    <?php $sizes = $listSize->getCollection();?>
+    <?php if ($sizes->getSize()): ?>
+        <div class="size-toolbar toolbar top"><?= $listSize->getPagerHtml(); ?></div>
+        <div class="size-list">
+            <?php foreach ($sizes as $size): ?>
+                <?php /** @var \Harriswebworks\Sizing\Model\Size $size */?>
+                <div class="size-item">
+                    <div class="size-size">
+                        <?php if ($sizeUrl): ?>
+                            <a href="<?= $block->escapeUrl($sizeUrl->getSizeUrl($size)); ?>">
+                                <span><?= $block->escapeHtml($size->getSize()); ?></span>
+                            </a>
+                        <?php else: ?>
+                            <span><?= $block->escapeHtml($size->getSize()); ?></span>
+                        <?php endif;?>
+                    </div>
+                    <?php if ($formatter): ?>
+                        <div class="size-details">
+                            <div class="size-size">
+                                <strong><?= $block->escapeHtml(__('Size')); ?></strong>
+                                <?= $formatter->formatHtml($size->getSize(), ['type' => 'text']); ?>
+                            </div>
+                            <div class="size-description">
+                                <strong><?= $block->escapeHtml(__('Description')); ?></strong>
+                                <?= $formatter->formatHtml($size->getDescription(), ['type' => 'editor']); ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <div class="size-toolbar toolbar bottom"><?= $listSize->getPagerHtml(); ?></div>
+    <?php else: ?>
+            <?= $block->escapeHtml(__('There are no Sizes at this moment')); ?>
+    <?php endif ?>
+<?php endif;

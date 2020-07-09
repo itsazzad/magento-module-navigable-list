@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Harriswebworks_Sizing::sizing"
+             title="Manage Sizing"
+             module="Harriswebworks_Sizing"
+             sortOrder="30"
+             resource="Harriswebworks_Sizing::sizing"
+             parent="Magento_Catalog::catalog" />
+        <add id="Harriswebworks_Sizing::sizing_size"
+             title="Sizes"
+             module="Harriswebworks_Sizing"
+             sortOrder="10"
+             action="sizing/size/"
+             resource="Harriswebworks_Sizing::sizing_size"
+             parent="Harriswebworks_Sizing::sizing"
+        />
+    </menu>
+</config>

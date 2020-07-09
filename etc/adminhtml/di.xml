@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--[+] define the ui config for "size" entity -->
+    <virtualType name="SizingSizeUiConfig" type="Harriswebworks\Sizing\Ui\EntityUiConfig">
+        <arguments>
+            <argument name="interface" xsi:type="string">\Harriswebworks\Sizing\Api\Data\SizeInterface</argument>
+            <argument name="data" xsi:type="array">
+                <item name="name_attribute" xsi:type="string">size</item><!-- this is the attribute / field name that represents your entity -->
+                <item name="labels" xsi:type="array">
+                    <item name="new" xsi:type="string" translatable="true">Add New Size</item>
+                    <item name="back" xsi:type="string" translatable="true">Back to list</item>
+                    <item name="save" xsi:type="string" translatable="true">Save Size</item>
+                    <item name="delete" xsi:type="string" translatable="true">Delete Size</item>
+                    <item name="delete_message" xsi:type="string" translatable="true">Are you sure you want to delete Size?</item>
+                </item>
+                <item name="save" xsi:type="array">
+                    <!-- uncomment lines below to remove the "Save and close" and "Save and duplicate" buttons -->
+                    <!--<item name="allow_close" xsi:type="boolean">false</item>-->
+                    <!--<item name="allow_duplicate" xsi:type="boolean">false</item>-->
+                </item>
+                <item name="list" xsi:type="array">
+                    <item name="page_title" xsi:type="string" translatable="true">Sizes</item>
+                </item>
+                <item name="messages" xsi:type="array">
+                    <item name="delete" xsi:type="array">
+                        <item name="success" xsi:type="string" translatable="true">Size successfully deleted</item>
+                        <item name="missing_entity" xsi:type="string" translatable="true">Couldn't find Size to delete</item>
+                        <item name="error" xsi:type="string" translatable="true">There was a problem deleting the Size</item>
+                    </item>
+                    <item name="save" xsi:type="array">
+                        <item name="success" xsi:type="string" translatable="true">Size successfully saved</item>
+                        <item name="error" xsi:type="string" translatable="true">There was a problem saving the Size</item>
+                        <item name="duplicate" xsi:type="string" translatable="true">Size duplicated successfully</item>
+                    </item>
+                    <item name="mass_delete" xsi:type="array">
+                        <item name="success" xsi:type="string" translatable="true">%1 Sizes were successfully deleted</item>
+                        <item name="error" xsi:type="string" translatable="true">There was a problem deleting the Size</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <!--[-] define the ui config for "size" entity -->
+    <!--[+] configure admin controllers to use the ui entity config for "size" -->
+    <type name="Harriswebworks\Sizing\Controller\Adminhtml\Size\Index">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">SizingSizeUiConfig</argument>
+        </arguments>
+    </type>
+    <type name="Harriswebworks\Sizing\Controller\Adminhtml\Size\Edit">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">SizingSizeUiConfig</argument>
+            <argument name="entityUiManager" xsi:type="object">Harriswebworks\Sizing\Model\SizeUiManager</argument>
+        </arguments>
+    </type>
+    <type name="Harriswebworks\Sizing\Controller\Adminhtml\Size\Save">
+        <arguments>
+            <argument name="entityUiManager" xsi:type="object">Harriswebworks\Sizing\Model\SizeUiManager</argument>
+            <argument name="dataProcessor" xsi:type="object">Harriswebworks\Sizing\Ui\SaveDataProcessor\NullProcessor</argument>
+            <argument name="uiConfig" xsi:type="object">SizingSizeUiConfig</argument>
+        </arguments>
+    </type>
+    <type name="Harriswebworks\Sizing\Controller\Adminhtml\Size\InlineEdit">
+        <arguments>
+            <argument name="entityUiManager" xsi:type="object">Harriswebworks\Sizing\Model\SizeUiManager</argument>
+            <argument name="dataProcessor" xsi:type="object">Harriswebworks\Sizing\Ui\SaveDataProcessor\NullProcessor</argument>
+            <argument name="uiConfig" xsi:type="object">SizingSizeUiConfig</argument>
+        </arguments>
+    </type>
+    <type name="Harriswebworks\Sizing\Controller\Adminhtml\Size\Delete">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">SizingSizeUiConfig</argument>
+            <argument name="uiManager" xsi:type="object">Harriswebworks\Sizing\Model\SizeUiManager</argument>
+        </arguments>
+    </type>
+    <type name="Harriswebworks\Sizing\Controller\Adminhtml\Size\MassDelete">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">SizingSizeUiConfig</argument>
+            <argument name="uiManager" xsi:type="object">Harriswebworks\Sizing\Model\SizeUiManager</argument>
+            <argument name="collectionProvider" xsi:type="object">Harriswebworks\Sizing\Model\SizeUiCollectionProvider</argument>
+        </arguments>
+    </type>
+    <!--[+] configure admin controllers to use the ui entity config for "size" -->
+
+    <virtualType name="SizingSizeUiFormDataProvider" type="Harriswebworks\Sizing\Ui\Form\DataProvider">
+        <arguments>
+            <argument name="primaryFieldName" xsi:type="object">size_id</argument>
+            <argument name="requestFieldName" xsi:type="object">size_id</argument>
+            <argument name="uiConfig" xsi:type="object">SizingSizeUiConfig</argument>
+            <argument name="dataModifier" xsi:type="object">Harriswebworks\Sizing\Ui\Form\DataModifier\NullModifier</argument>
+            <argument name="collectionProvider" xsi:type="object">Harriswebworks\Sizing\Model\SizeUiCollectionProvider</argument>
+        </arguments>
+    </virtualType>
+    <!--[+] form button configuration for 'size' -->
+    <virtualType name="SizingSizeButtonBack" type="Harriswebworks\Sizing\Block\Adminhtml\Button\Back">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">SizingSizeUiConfig</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SizingSizeButtonSave" type="Harriswebworks\Sizing\Block\Adminhtml\Button\Save">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">SizingSizeUiConfig</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SizingSizeButtonDelete" type="Harriswebworks\Sizing\Block\Adminhtml\Button\Delete">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">SizingSizeUiConfig</argument>
+            <argument name="entityUiManager" xsi:type="object">Harriswebworks\Sizing\Model\SizeUiManager</argument>
+        </arguments>
+    </virtualType>
+    <!--[-] form button configuration for 'size' -->
+    <!--[+] configure the grid actions column  for "size" entity-->
+    <virtualType name="SizingSizeGridActions" type="Harriswebworks\Sizing\Ui\Component\Listing\ActionsColumn">
+        <arguments>
+            <argument name="uiConfig" xsi:type="object">SizingSizeUiConfig</argument>
+        </arguments>
+    </virtualType>
+    <!--[-] configure the grid actions column  for "size" entity-->
+    <type name="Magento\Backend\Block\GlobalSearch">
+        <arguments>
+            <argument name="entityResources" xsi:type="array">
+                <item name="Manage Sizing Sizes" xsi:type="string">Harriswebworks_Sizing::sizing_size</item>
+            </argument>
+            <argument name="entityPaths" xsi:type="array">
+                <item name="Manage Sizing Sizes" xsi:type="string">harriswebworks_sizing/size/index</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

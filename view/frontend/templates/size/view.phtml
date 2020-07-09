@@ -1,0 +1,27 @@
+<?php
+
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var $sizeView \Harriswebworks\Sizing\ViewModel\Size\View */
+/** @var $formatter \Harriswebworks\Sizing\ViewModel\Formatter */
+$sizeView = $block->getData('sizeView');
+$formatter = $block->getData('formatter');
+?>
+<?php if ($sizeView && $formatter && $size = $sizeView->getSize()): ?>
+    <div class="size-view">
+        <div class="size-size">
+            <?= $block->escapeHtml($size->getSize());?>
+        </div>
+        <?php if ($formatter): ?>
+            <div class="size-details">
+                <div class="size-size">
+                <strong><?= $block->escapeHtml(__('Size')); ?></strong>
+                <?= $formatter->formatHtml($size->getSize(), ['type' => 'text']); ?>
+                </div>
+                <div class="size-description">
+                <strong><?= $block->escapeHtml(__('Description')); ?></strong>
+                <?= $formatter->formatHtml($size->getDescription(), ['type' => 'editor']); ?>
+                </div>
+            </div>
+        <?php endif; ?>
+    </div>
+<?php endif;

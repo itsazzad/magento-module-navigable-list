@@ -1,0 +1,1 @@
+Fatal Error: composer.lock was created for PHP version 7.3 or higher but the current PHP version is 7.1.33.

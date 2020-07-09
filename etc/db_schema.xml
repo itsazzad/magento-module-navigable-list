@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="sizing_size" resource="default" engine="innodb" comment="Size Table">
+        <column xsi:type="smallint" name="size_id" padding="6" unsigned="false" nullable="false" identity="true"  comment="Size ID"/>
+        <column xsi:type="varchar" name="size" length="255" nullable="false" comment="Size Size"/>
+        <column xsi:type="mediumtext" name="description" nullable="false" comment="Size Description"/>
+        <column xsi:type="varchar" name="order" length="255" nullable="false" comment="Size Ordering"/>
+        <column xsi:type="smallint" name="is_active" padding="6" unsigned="false" nullable="false" identity="false" default="1" comment="Size Is Active"/>
+        <column xsi:type="varchar" name="meta_title" nullable="true" length="255" comment="Size Meta Title"/>
+        <column xsi:type="text" name="meta_keywords" nullable="true" comment="Size Meta Keywords"/>
+        <column xsi:type="text" name="meta_description" nullable="true" comment="Size Meta Description"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Size Created at"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Size Updated At"/>
+        <index referenceId="HARRISWEBWORKS_SIZING_SIZE_FULLTEXT" indexType="fulltext">
+            <column name="size" />
+            <column name="description" />
+            <column name="order" />
+        </index>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="size_id"/>
+        </constraint>
+    </table>
+    <table name="sizing_size_store" resource="default" engine="innodb" comment="Size Store Link Table">
+        <column xsi:type="smallint" name="size_id" padding="6" unsigned="false" nullable="false" identity="false"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Store ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="size_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="SIZING_SIZE_STORE_SIZE_ID_SIZING_SIZE_SIZE_ID" table="sizing_size_store"
+                    column="size_id" referenceTable="sizing_size" referenceColumn="size_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="SIZING_SIZE_STORE_STORE_STORE_ID" table="sizing_size_store"
+                    column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="SIZING_SIZE_STORE_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+</schema>
