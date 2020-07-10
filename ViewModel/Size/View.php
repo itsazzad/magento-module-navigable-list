@@ -26,11 +26,19 @@ class View implements ArgumentInterface
     private $size;
 
     /**
+     * @var int
+     */
+    private $serial;
+
+    /**
      * View constructor.
      * @param RequestInterface $request
      * @param SizeRepositoryInterface $sizeRepository
      */
-    public function __construct(RequestInterface $request, SizeRepositoryInterface $sizeRepository)
+    public function __construct(
+        RequestInterface $request,
+        SizeRepositoryInterface $sizeRepository
+        )
     {
         $this->request = $request;
         $this->sizeRepository = $sizeRepository;
@@ -54,5 +62,21 @@ class View implements ArgumentInterface
             }
         }
         return $this->size;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getSerial()
+    {
+        if (!$this->serial || $this->serial <= 0) {
+            $serial = (int)$this->request->getParam('s');
+            if ($serial) {
+                $this->serial = $serial;
+            } else {
+                $this->serial = null;
+            }
+        }
+        return $this->serial;
     }
 }

@@ -1,13 +1,51 @@
 <?php
 
 /** @var \Magento\Framework\View\Element\Template $block */
-/** @var $sizeView \Harriswebworks\Sizing\ViewModel\Size\View */
+
 /** @var $formatter \Harriswebworks\Sizing\ViewModel\Formatter */
+/** @var $sizeView \Harriswebworks\Sizing\ViewModel\Size\View */
+/** @var $sizeUrl \Harriswebworks\Sizing\ViewModel\Size\Url */
+/** @var $listSizeForPrevious \Harriswebworks\Sizing\ViewModel\Size\ListSizeForPrevious */
+/** @var $listSizeForNext \Harriswebworks\Sizing\ViewModel\Size\ListSizeForNext */
+$listSizeForPrevious = $block->getData('listSizeForPrevious');
+$listSizeForNext = $block->getData('listSizeForNext');
+$sizeUrl = $block->getData('sizeUrl');
 $sizeView = $block->getData('sizeView');
 $formatter = $block->getData('formatter');
 ?>
 <?php if ($sizeView && $formatter && $size = $sizeView->getSize()): ?>
+    <?php $serial = $sizeView->getSerial(); ?>
+
+    <?php
+        if($serial > 1){
+            $previousSizeCollection = $listSizeForPrevious->getCollection(($serial - 1) - 1);
+            $previousSizeData = $previousSizeCollection->getFirstItem()->getData();
+            $previousSizeId = $previousSizeData ? $previousSizeData['size_id'] : null;
+        }
+    ?>
+
+    <?php
+        $nextSizeCollection = $listSizeForNext->getCollection(($serial - 1) + 1);
+        $nextSizeData = $nextSizeCollection->getFirstItem()->getData();
+        $nextSizeId = $nextSizeData ? $nextSizeData['size_id'] : null;
+    ?>
     <div class="size-view">
+        <div class="size-nav">
+            <?php if (isset($previousSizeId)): ?>
+                <div class="size-nav-prev">
+                    <a href="<?= $block->escapeUrl($sizeUrl->getSizeUrl($previousSizeId, $serial-1)); ?>">
+                        <span>Previous</span>
+                    </a>
+                </div>
+            <?php endif; ?>
+            <?php if ($nextSizeId): ?>
+                <div class="size-nav-next">
+                    <a href="<?= $block->escapeUrl($sizeUrl->getSizeUrl($nextSizeId, $serial+1)); ?>">
+                        <span>Next</span>
+                    </a>
+                </div>
+            <?php endif; ?>
+        </div>
         <div class="size-size">
             <?= $formatter->formatHtml($size->getSize(), ['type' => 'text']); ?>
         </div>

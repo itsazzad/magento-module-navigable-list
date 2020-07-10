@@ -10,19 +10,11 @@ use Harriswebworks\Sizing\Model\ResourceModel\Size\CollectionFactory;
 use Magento\Framework\Api\SortOrder;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Element\BlockFactory;
-use Magento\Framework\View\Element\Block\ArgumentInterface;
-use Magento\Store\Model\StoreManagerInterface;
 use Magento\Theme\Block\Html\Pager;
-use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 
-class ListSize implements ArgumentInterface
+class ListSizeForNext extends ListSize
 {
-    /**
-     * @var string
-     */
-    public const ORDER_BY_CONFIG_PATH = 'sizing/size/order_by';
-
     /**
      * @var StoreManagerInterface
      */
@@ -43,45 +35,6 @@ class ListSize implements ArgumentInterface
      * @var Pager
      */
     private $pager;
-
-    /**
-     * ListSize constructor.
-     * @param StoreManagerInterface $storeManager
-     * @param CollectionFactory $collectionFactory
-     * @param BlockFactory $blockFactory
-     * @param ScopeConfigInterface $scopeConfig
-     */
-    public function __construct(
-            StoreManagerInterface $storeManager,
-            CollectionFactory $collectionFactory,
-            BlockFactory $blockFactory,
-            ScopeConfigInterface $scopeConfig
-        ) {
-        $this->storeManager = $storeManager;
-        $this->collectionFactory = $collectionFactory;
-        $this->blockFactory = $blockFactory;
-        $this->scopeConfig = $scopeConfig;
-    }
-
-    /**
-     * @return Collection
-     * @throws NoSuchEntityException
-     */
-    public function getCollection(int $serial = null)
-    {
-        $this->processCollection($serial);
-        return $this->sizeCollection;
-    }
-
-    /**
-     * @return string
-     * @throws NoSuchEntityException
-     */
-    public function getPagerHtml()
-    {
-        $this->processCollection();
-        return $this->pager->toHtml();
-    }
 
     /**
      * prepare collection and pager

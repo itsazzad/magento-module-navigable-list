@@ -24,12 +24,18 @@ $systemConfig = $block->getData('systemConfig');
         <?php $pagerHtml = $listSize->getPagerHtml(); ?>
         <div class="size-toolbar toolbar top"><?= $pagerHtml; ?></div>
         <div class="size-list">
+            <?php
+            $serial = 0;
+            ?>
             <?php foreach ($sizes as $size): ?>
+                <?php
+                $serial++;
+                ?>
                 <?php /** @var \Harriswebworks\Sizing\Model\Size $size */?>
                 <div class="size-item">
                     <div class="size-size">
                         <?php if ($sizeUrl): ?>
-                            <a href="<?= $block->escapeUrl($sizeUrl->getSizeUrl($size)); ?>">
+                            <a href="<?= $block->escapeUrl($sizeUrl->getSizeUrl($size, $serial)); ?>">
                                 <span><?= $block->escapeHtml($size->getSize()); ?></span>
                             </a>
                         <?php else: ?>

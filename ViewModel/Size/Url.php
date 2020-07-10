@@ -35,20 +35,25 @@ class Url implements ArgumentInterface
     }
 
     /**
-     * @param SizeInterface $size
+     * @param SizeInterface|int $size
+     * @param int $serial
      * @return string
      */
-    public function getSizeUrl(SizeInterface $size)
+    public function getSizeUrl($size, int $serial = null)
     {
-        return $this->getSizeUrlById((int)$size->getId());
+        if (gettype($size) === 'object') {
+            return $this->getSizeUrlById((int)$size->getId(), $serial);
+        } else {
+            return $this->getSizeUrlById((int)$size, $serial);
+        }
     }
 
     /**
      * @param int $id
      * @return string
      */
-    public function getSizeUrlById(int $id)
+    public function getSizeUrlById(int $id, int $serial = null)
     {
-        return $this->urlBuilder->getUrl('sizing/size/view', ['id' => $id]);
+        return $this->urlBuilder->getUrl('sizing/size/view', ['id' => $id, '_query'=>['s' => $serial]]);
     }
 }
