@@ -11,6 +11,10 @@
                     <label>Short description</label>
                     <frontend_model>Harriswebworks\Sizing\Block\Adminhtml\System\Config\Form\Field\Editor</frontend_model>
                 </field>
+                <field id="sort_by" type="select" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Sort by</label>
+                    <source_model>Harriswebworks\Sizing\Model\Config\Source\OrderBy</source_model>
+                </field>
                 <field id="breadcrumbs" type="select" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enable Breadcrumbs</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>

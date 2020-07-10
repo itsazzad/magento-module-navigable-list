@@ -5,6 +5,7 @@
             <size>
                 <breadcrumbs>1</breadcrumbs>
                 <meta_title>Sizes</meta_title>
+                <sort_by>size</sort_by>
             </size>
         </sizing>
     </default>
