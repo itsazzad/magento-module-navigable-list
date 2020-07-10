@@ -104,20 +104,20 @@ class Size extends AbstractModel implements SizeInterface
     }
 
     /**
-     * @param int $order
+     * @param int $ordering
      * @return SizeInterface
      */
-    public function setOrder($order)
+    public function setOrdering($ordering)
     {
-        return $this->setData(self::ORDER, $order);
+        return $this->setData(self::ORDERING, $ordering);
     }
 
     /**
      * @return int
      */
-    public function getOrder()
+    public function getOrdering()
     {
-        return $this->getData(self::ORDER);
+        return $this->getData(self::ORDERING);
     }
 
     /**

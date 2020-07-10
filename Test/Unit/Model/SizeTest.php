@@ -87,14 +87,14 @@ class SizeTest extends TestCase
     }
 
     /**
-     * @covers \Harriswebworks\Sizing\Model\Size::setOrder
-     * @covers \Harriswebworks\Sizing\Model\Size::getOrder
+     * @covers \Harriswebworks\Sizing\Model\Size::setOrdering
+     * @covers \Harriswebworks\Sizing\Model\Size::getOrdering
      * @covers \Harriswebworks\Sizing\Model\Size::_construct
      */
-    public function testSetOrder()
+    public function testSetOrdering()
     {
-        $this->size->setOrder(10);
-        $this->assertEquals(10, $this->size->getOrder());
+        $this->size->setOrdering(10);
+        $this->assertEquals(10, $this->size->getOrdering());
     }
 
     /**

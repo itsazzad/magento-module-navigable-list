@@ -16,7 +16,7 @@ class OrderBy implements \Magento\Framework\Option\ArrayInterface
     {
         return [
             ['value' => 'size', 'label' => __('Size')],
-            ['value' => 'order', 'label' => __('Ordering')],
+            ['value' => 'ordering', 'label' => __('Ordering')],
         ];
     }
 }

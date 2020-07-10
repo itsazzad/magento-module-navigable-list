@@ -140,7 +140,7 @@
             </settings>
         </column>
 
-        <column name="order">
+        <column name="ordering">
             <settings>
                 <editor>
                     <validation>
@@ -148,7 +148,7 @@
                     </validation>
                     <editorType>text</editorType>
                 </editor>
-                <label translate="true">Ordering</label>
+                <label translate="true">Order</label>
             </settings>
         </column>
 

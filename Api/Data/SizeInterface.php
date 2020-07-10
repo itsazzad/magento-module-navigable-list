@@ -12,7 +12,7 @@ interface SizeInterface
     public const SIZE_ID = 'size_id';
     public const SIZE = 'size';
     public const DESCRIPTION = 'description';
-    public const ORDER = 'order';
+    public const ORDERING = 'ordering';
     public const STORE_ID = 'store_id';
     public const META_TITLE = 'meta_title';
     public const META_DESCRIPTION = 'meta_description';
@@ -66,15 +66,15 @@ interface SizeInterface
     public function getDescription();
 
     /**
-     * @param int $order
+     * @param int $ordering
      * @return SizeInterface
      */
-    public function setOrder($order);
+    public function setOrdering($ordering);
 
     /**
      * @return int
      */
-    public function getOrder();
+    public function getOrdering();
 
     /**
      * @param int[] $store

@@ -4,7 +4,7 @@
         <column xsi:type="smallint" name="size_id" padding="6" unsigned="false" nullable="false" identity="true"  comment="Size ID"/>
         <column xsi:type="varchar" name="size" length="255" nullable="false" comment="Size Size"/>
         <column xsi:type="mediumtext" name="description" nullable="false" comment="Size Description"/>
-        <column xsi:type="int" name="order" padding="11" nullable="false" comment="Size Ordering"/>
+        <column xsi:type="int" name="ordering" padding="11" nullable="false" comment="Size Order"/>
         <column xsi:type="smallint" name="is_active" padding="6" unsigned="false" nullable="false" identity="false" default="1" comment="Size Is Active"/>
         <column xsi:type="varchar" name="meta_title" nullable="true" length="255" comment="Size Meta Title"/>
         <column xsi:type="text" name="meta_keywords" nullable="true" comment="Size Meta Keywords"/>

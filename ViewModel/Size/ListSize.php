@@ -13,9 +13,16 @@ use Magento\Framework\View\Element\BlockFactory;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Theme\Block\Html\Pager;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Store\Model\ScopeInterface;
 
 class ListSize implements ArgumentInterface
 {
+    /**
+     * @var string
+     */
+    public const ORDER_BY_CONFIG_PATH = 'sizing/size/order_by';
+
     /**
      * @var StoreManagerInterface
      */
@@ -42,15 +49,18 @@ class ListSize implements ArgumentInterface
      * @param StoreManagerInterface $storeManager
      * @param CollectionFactory $collectionFactory
      * @param BlockFactory $blockFactory
+     * @param ScopeConfigInterface $scopeConfig
      */
     public function __construct(
         StoreManagerInterface $storeManager,
         CollectionFactory $collectionFactory,
-        BlockFactory $blockFactory
-    ) {
+        BlockFactory $blockFactory,
+        ScopeConfigInterface $scopeConfig
+        ) {
         $this->storeManager = $storeManager;
         $this->collectionFactory = $collectionFactory;
         $this->blockFactory = $blockFactory;
+        $this->scopeConfig = $scopeConfig;
     }
 
     /**
@@ -85,7 +95,8 @@ class ListSize implements ArgumentInterface
             $this->sizeCollection->addFieldToSelect(SizeInterface::SIZE);
             $this->sizeCollection->addFieldToFilter(SizeInterface::IS_ACTIVE, 1);
             $this->sizeCollection->addStoreFilter($this->storeManager->getStore()->getId());
-            $this->sizeCollection->setOrder(SizeInterface::SIZE, SortOrder::SORT_ASC);
+            $orderBy = $this->scopeConfig->getValue(self::ORDER_BY_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
+            $this->sizeCollection->setOrder($orderBy ? $orderBy : SizeInterface::SIZE, SortOrder::SORT_ASC);
             $this->pager = $this->blockFactory->createBlock(Pager::class);
             $this->pager->setCollection($this->sizeCollection);
         }
