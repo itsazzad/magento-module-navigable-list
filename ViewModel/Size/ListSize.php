@@ -81,6 +81,8 @@ class ListSize implements ArgumentInterface
     {
         if ($this->sizeCollection === null) {
             $this->sizeCollection = $this->collectionFactory->create();
+            $this->sizeCollection->addFieldToSelect(SizeInterface::SIZE_ID);
+            $this->sizeCollection->addFieldToSelect(SizeInterface::SIZE);
             $this->sizeCollection->addFieldToFilter(SizeInterface::IS_ACTIVE, 1);
             $this->sizeCollection->addStoreFilter($this->storeManager->getStore()->getId());
             $this->sizeCollection->setOrder(SizeInterface::SIZE, SortOrder::SORT_ASC);

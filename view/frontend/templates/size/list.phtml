@@ -35,18 +35,6 @@ $systemConfig = $block->getData('systemConfig');
                             <span><?= $block->escapeHtml($size->getSize()); ?></span>
                         <?php endif;?>
                     </div>
-                    <?php if ($formatter): ?>
-                        <div class="size-details">
-                            <div class="size-size">
-                                <strong><?= $block->escapeHtml(__('Size')); ?></strong>
-                                <?= $formatter->formatHtml($size->getSize(), ['type' => 'text']); ?>
-                            </div>
-                            <div class="size-description">
-                                <strong><?= $block->escapeHtml(__('Description')); ?></strong>
-                                <?= $formatter->formatHtml($size->getDescription(), ['type' => 'editor']); ?>
-                            </div>
-                        </div>
-                    <?php endif; ?>
                 </div>
             <?php endforeach; ?>
         </div>
