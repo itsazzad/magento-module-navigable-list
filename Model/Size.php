@@ -104,7 +104,7 @@ class Size extends AbstractModel implements SizeInterface
     }
 
     /**
-     * @param string $order
+     * @param int $order
      * @return SizeInterface
      */
     public function setOrder($order)
@@ -113,7 +113,7 @@ class Size extends AbstractModel implements SizeInterface
     }
 
     /**
-     * @return string
+     * @return int
      */
     public function getOrder()
     {

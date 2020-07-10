@@ -66,13 +66,13 @@ interface SizeInterface
     public function getDescription();
 
     /**
-     * @param string $order
+     * @param int $order
      * @return SizeInterface
      */
     public function setOrder($order);
 
     /**
-     * @return string
+     * @return int
      */
     public function getOrder();
 

@@ -93,8 +93,8 @@ class SizeTest extends TestCase
      */
     public function testSetOrder()
     {
-        $this->size->setOrder('order');
-        $this->assertEquals('order', $this->size->getOrder());
+        $this->size->setOrder(10);
+        $this->assertEquals(10, $this->size->getOrder());
     }
 
     /**
