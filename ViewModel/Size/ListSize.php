@@ -89,6 +89,7 @@ class ListSize implements ArgumentInterface
      */
     private function processCollection($serial = null)
     {
+        if ($this->sizeCollection === null) {
             $orderBy = $this->scopeConfig->getValue(self::ORDER_BY_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
             $this->sizeCollection = $this->collectionFactory->create();
             $this->sizeCollection->addFieldToSelect(SizeInterface::SIZE_ID);
@@ -102,5 +103,6 @@ class ListSize implements ArgumentInterface
                 $this->pager = $this->blockFactory->createBlock(Pager::class);
                 $this->pager->setCollection($this->sizeCollection);
             }
+        }
     }
 }

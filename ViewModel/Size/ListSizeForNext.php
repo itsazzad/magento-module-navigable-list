@@ -42,6 +42,7 @@ class ListSizeForNext extends ListSize
      */
     private function processCollection($serial = null)
     {
+        if ($this->sizeCollection === null) {
             $orderBy = $this->scopeConfig->getValue(self::ORDER_BY_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
             $this->sizeCollection = $this->collectionFactory->create();
             $this->sizeCollection->addFieldToSelect(SizeInterface::SIZE_ID);
@@ -55,5 +56,6 @@ class ListSizeForNext extends ListSize
                 $this->pager = $this->blockFactory->createBlock(Pager::class);
                 $this->pager->setCollection($this->sizeCollection);
             }
+        }
     }
 }

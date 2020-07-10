@@ -11,7 +11,9 @@ $sizeUrl = $block->getData('sizeUrl');
 /** @var $systemConfig \Harriswebworks\Sizing\ViewModel\SystemConfig */
 $systemConfig = $block->getData('systemConfig');
 ?>
-
+<?php
+    $MIN_COUNT = 10;
+?>
 <?php if ($systemConfig): ?>
     <div class="short-description">
         <?= $systemConfig->getShortDescription(); ?>
@@ -20,9 +22,12 @@ $systemConfig = $block->getData('systemConfig');
 
 <?php if ($listSize): ?>
     <?php $sizes = $listSize->getCollection();?>
-    <?php if ($sizes->getSize()): ?>
-        <?php $pagerHtml = $listSize->getPagerHtml(); ?>
-        <div class="size-toolbar toolbar top"><?= $pagerHtml; ?></div>
+    <?php $totalCount = $sizes->getSize(); ?>
+    <?php if ($totalCount): ?>
+        <?php if ($totalCount > $MIN_COUNT ): ?>
+            <?php $pagerHtml = $listSize->getPagerHtml(); ?>
+            <div class="size-toolbar toolbar top"><?= $pagerHtml; ?></div>
+        <?php endif ?>
         <div class="size-list">
             <?php
             $serial = 0;
@@ -45,7 +50,9 @@ $systemConfig = $block->getData('systemConfig');
                 </div>
             <?php endforeach; ?>
         </div>
-        <div class="size-toolbar toolbar bottom"><?= $pagerHtml; ?></div>
+        <?php if ($totalCount > $MIN_COUNT ): ?>
+            <div class="size-toolbar toolbar bottom"><?= $pagerHtml; ?></div>
+        <?php endif ?>
     <?php else: ?>
             <?= $block->escapeHtml(__('There are no Sizes at this moment')); ?>
     <?php endif ?>
