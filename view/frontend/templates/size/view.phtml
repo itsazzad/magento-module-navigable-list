@@ -9,17 +9,12 @@ $formatter = $block->getData('formatter');
 <?php if ($sizeView && $formatter && $size = $sizeView->getSize()): ?>
     <div class="size-view">
         <div class="size-size">
-            <?= $block->escapeHtml($size->getSize());?>
+            <?= $formatter->formatHtml($size->getSize(), ['type' => 'text']); ?>
         </div>
         <?php if ($formatter): ?>
             <div class="size-details">
-                <div class="size-size">
-                <strong><?= $block->escapeHtml(__('Size')); ?></strong>
-                <?= $formatter->formatHtml($size->getSize(), ['type' => 'text']); ?>
-                </div>
                 <div class="size-description">
-                <strong><?= $block->escapeHtml(__('Description')); ?></strong>
-                <?= $formatter->formatHtml($size->getDescription(), ['type' => 'editor']); ?>
+                    <?= $formatter->formatHtml($size->getDescription(), ['type' => 'editor']); ?>
                 </div>
             </div>
         <?php endif; ?>
